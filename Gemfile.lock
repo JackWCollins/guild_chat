@@ -73,6 +73,7 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.0.0)
       concurrent-ruby (~> 1.0)
+    libv8 (6.3.292.48.1-x86_64-darwin-14)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -85,6 +86,8 @@ GEM
     method_source (0.9.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
+    mini_racer (0.1.15)
+      libv8 (~> 6.3)
     minitest (5.11.3)
     nio4r (2.3.0)
     nokogiri (1.8.2)
@@ -192,6 +195,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   figaro
   listen (>= 3.0.5, < 3.2)
+  mini_racer
   pg
   puma (~> 3.7)
   rails (~> 5.1.5)
