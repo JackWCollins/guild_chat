@@ -45,7 +45,7 @@ class LoginForm extends React.Component {
   }
 }
 
-Conversation.propTypes = {
+LoginForm.propTypes = {
   users: PropTypes.array,
   login: PropTypes.func.isRequired
 };

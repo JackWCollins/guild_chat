@@ -1,5 +1,12 @@
 import { combineReducers } from 'redux';
-import { USER_LOGIN, USER_LOGOUT, LOAD_CONVERSATIONS_REQUEST, LOAD_CONVERSATIONS_SUCCESS } from '../actions/guildChatActionCreators';
+import {
+  USER_LOGIN,
+  USER_LOGOUT,
+  LOAD_CONVERSATIONS_REQUEST,
+  LOAD_CONVERSATIONS_SUCCESS,
+  LOAD_CONVERSATION_REQUEST,
+  LOAD_CONVERSATION_SUCCESS
+} from '../actions/guildChatActionCreators';
 
 const home = (state = {}, action) => {
   switch (action.type) {
@@ -16,17 +23,25 @@ const home = (state = {}, action) => {
   }
 };
 
-const conversation = (state = {}, action) => {
+const activeConversation = (state = {}, action) => {
   switch (action.type) {
     case USER_LOGIN:
-      return { ...state, activeUserId: action.userId, activeUserName: action.userName };
-    case USER_LOGOUT:
-      return { ...state, activeUserId: null, activeUserName: null };
+      return { ...state, loading: true };
+    case LOAD_CONVERSATION_REQUEST:
+      return { ...state, loading: true};
+    case LOAD_CONVERSATION_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        messages: action.conversation.messages,
+        id: action.conversation.id,
+        users: action.conversation.users
+      };
     default:
       return state;
   }
 }
 
-const guildChatReducer = combineReducers({ home });
+const guildChatReducer = combineReducers({ home, activeConversation });
 
 export default guildChatReducer;

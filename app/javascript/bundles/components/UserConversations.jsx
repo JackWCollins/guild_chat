@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Tab, Loader } from 'semantic-ui-react';
-import Conversation from "./Conversation";
+import ConversationContainer from "../containers/ConversationContainer";
 
 class UserConversations extends React.Component {
 
@@ -17,7 +17,7 @@ class UserConversations extends React.Component {
     } else {
       const conversationMenu = this.props.conversations.map((convo) => {
         let name = convo.users.find((u) => u.id !== this.props.activeUserId).first_name;
-        return {menuItem: name, render: () => <Tab.Pane attached={false}> <Conversation name={name} /> </Tab.Pane>}
+        return {menuItem: name, render: () => <Tab.Pane attached={false}> <ConversationContainer /> </Tab.Pane>}
        });
 
       return (

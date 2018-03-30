@@ -40,3 +40,63 @@ export function loadConversations(userId) {
       .then(json => dispatch(receiveConversations(json)));
   };
 }
+
+export const SEND_MESSAGE_REQUEST = 'SEND_MESSAGE_REQUEST';
+const sendMessageRequest = () => ({
+  type: SEND_MESSAGE_REQUEST
+});
+
+export const SEND_MESSAGE_SUCCESS = 'SEND_MESSAGE_SUCCESS';
+const sendMessageSuccess = (message) => ({
+  type: SEND_MESSAGE_SUCCESS,
+  message
+});
+
+export function sendMessage(userId, conversationId, messageBody) {
+  console.log("sendMessage action: ", userId, conversationId, messageBody)
+  return function (dispatch) {
+    dispatch(sendMessageRequest());
+
+    return fetch('/messages', {
+      method: 'POST',
+      body: JSON.stringify({user_id: userId, conversation_id: conversationId, body: messageBody}),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+      .then(
+        response => response.json(),
+        error => console.log('An error occurred while sending the message: ', error)
+      )
+      .then(json => dispatch(sendMessageSuccess(json)))
+  }
+}
+
+export const LOAD_CONVERSATION_REQUEST = 'LOAD_CONVERSATION_REQUEST';
+const loadConversationRequest = () => ({
+  type: LOAD_CONVERSATION_REQUEST
+});
+
+export const LOAD_CONVERSATION_SUCCESS = 'LOAD_CONVERSATION_SUCCESS';
+const loadConversationSuccess = (conversation) => ({
+  type: LOAD_CONVERSATION_SUCCESS,
+  conversation
+});
+
+export function selectConversation(conversationId) {
+  return function (dispatch) {
+    dispatch(loadConversationRequest());
+
+    return fetch('/conversations/'+conversationId, {
+      method: 'GET',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+      .then(
+        response => response.json(),
+        error => console.log('An error occurred while loading the conversation: ', error)
+      )
+      .then(json => dispatch(loadConversationSuccess(json)))
+  }
+}

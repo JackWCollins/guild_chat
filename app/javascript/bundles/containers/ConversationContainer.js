@@ -1,16 +1,17 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import GuildChat from '../components/GuildChat';
-import * as actions from '../actions/guildChatActionCreators';
+import Conversation from '../components/Conversation';
+import { sendMessage } from '../actions/guildChatActionCreators';
 
 const mapStateToProps = (state) => {
   return {
-    name: state.name
+    conversationId: state.activeConversation.id,
+    activeUserId: state.home.activeUserId
   }
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch);
+  return bindActionCreators({ sendMessage }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GuildChat);
+export default connect(mapStateToProps, mapDispatchToProps)(Conversation);

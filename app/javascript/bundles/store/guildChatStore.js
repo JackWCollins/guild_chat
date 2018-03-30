@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import guildChatReducer from '../reducers/guildChatReducer';
 import thunk from 'redux-thunk';
 
