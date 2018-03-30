@@ -1,15 +1,24 @@
 import { combineReducers } from 'redux';
-import { HELLO_WORLD_NAME_UPDATE } from '../actions/guildChatActionCreators';
+import { USER_LOGIN, LOAD_USERS_SUCCESS } from '../actions/guildChatActionCreators';
 
-const name = (state = '', action) => {
+const home = (state = {}, action) => {
   switch (action.type) {
-    case HELLO_WORLD_NAME_UPDATE:
-      return action.text;
+    case USER_LOGIN:
+      return { ...state, activeUserId: action.userId, activeUserName: action.userName };
     default:
       return state;
   }
 };
 
-const guildChatReducer = combineReducers({ name });
+// const users = (state = {}, action) => {
+//   switch (action.type) {
+//     case LOAD_USERS_SUCCESS:
+//       return { ...state, users: action.users };
+//     default:
+//       return state;
+//   }
+// };
+
+const guildChatReducer = combineReducers({ home });
 
 export default guildChatReducer;

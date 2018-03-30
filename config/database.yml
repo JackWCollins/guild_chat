@@ -5,17 +5,17 @@ default: &default
 
 development:
   <<: *default
-  database: kopool_development
+  database: guildchat_development
   username: <%= ENV['POSTGRES_USERNAME'] %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>
 
 test:
   <<: *default
-  database: kopool_test
+  database: guildchat_test
   username: <%= ENV['POSTGRES_USERNAME'] %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>
 
 production:
   <<: *default
-  database: kopool_production
+  database: guildchat_production
   url: <%= ENV['DATABASE_URL'] %>

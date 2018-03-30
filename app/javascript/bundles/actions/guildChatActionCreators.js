@@ -1,7 +1,42 @@
 /* eslint-disable import/prefer-default-export */
 
-export const HELLO_WORLD_NAME_UPDATE = 'HELLO_WORLD_NAME_UPDATE';
-export const updateName = (text) => ({
-  type: HELLO_WORLD_NAME_UPDATE,
-  text,
+export const USER_LOGIN = 'USER_LOGIN';
+export const login = (userId, userName) => ({
+  type: USER_LOGIN,
+  userid,
+  userName
 });
+
+export const USER_LOGOUT = 'USER_LOGOUT';
+export const logout = () => ({
+  type: USER_LOGOUT,
+});
+
+export const LOAD_USERS_REQUEST = 'LOAD_USERS_REQUEST';
+const requestUsers = () => ({
+  type: LOAD_USERS_REQUEST
+});
+
+export const LOAD_USERS_SUCCESS = 'LOAD_USERS_SUCCESS';
+const receiveUsers = (users) => ({
+  type: LOAD_USERS_SUCCESS,
+  users
+});
+
+export function loadUsers() {
+  return function (dispatch) {
+    dispatch(requestUsers());
+
+    return fetch('http://localhost:3000/users.json', {
+      method: 'GET',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+      .then(
+        response => response.json(),
+        error => console.log('An error occurred while creating a deck: ', error)
+      )
+      .then(json => dispatch(receiveUsers(json)));
+  };
+}
