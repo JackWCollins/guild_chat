@@ -1,16 +1,15 @@
 class MessagesController < ApplicationController
-  def index
-    conversation = Conversation.find_by_id(message_params[:conversation_id])
-    if conversation.blank?
-      render json: {error: "Please specify the conversation for the messages."}
-    end
-  end
-
   def create
+    if message_params[:body].blank?
+      render json: {error: "There was an error creating the message: Please enter a message body"}, status: :bad_request
+      return
+    end
+
     message = Message.new(message_params)
     if message.save
+      render json: message
     else
-      render json: {error: "There was an error creating the message: #{message.errors.full_messages.first}"}
+      render json: {error: "There was an error creating the message: #{message.errors.full_messages.first}"}, status: :bad_request
     end
   end
 
@@ -19,7 +18,7 @@ class MessagesController < ApplicationController
     if message.destroy
       render json: {id: message.id}
     else
-      render json: {error: "There was an error deleting this message"}
+      render json: {error: "There was an error deleting this message"}, status: :bad_request
     end
   end
 

@@ -8,7 +8,7 @@ import LoginFormContainer from "../containers/LoginFormContainer";
 
 const GuildChatApp = (props) => (
   <Provider store={configureStore(props)}>
-    { isAuthenticated() ? <GuildChatContainer /> : <LoginFormContainer />}
+    <GuildChatContainer />
   </Provider>
 );
 

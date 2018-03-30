@@ -1,5 +1,5 @@
-Factorybot.define do
-  factory :user, alias: :steven do
+FactoryBot.define do
+  factory :user, aliases: [:steven] do
     first_name "Steven"
     last_name "Alpha"
 
@@ -8,5 +8,4 @@ Factorybot.define do
       last_name "Beta"
     end
   end
-
 end

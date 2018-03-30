@@ -4,6 +4,14 @@ import Conversation from "./Conversation";
 import PropTypes from "prop-types";
 
 class LoginForm extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  handleUserClick = (userId, userName) => {
+    this.props.login(userId, userName)
+  }
+
   render() {
     // const users = [
     //   {name: "Kevin Smith", id: 1},
@@ -18,15 +26,16 @@ class LoginForm extends React.Component {
           verticalAlign='middle'
         >
           <Grid.Column style={{ maxWidth: 450 }}>
+            Select a user:
             <List selection verticalAlign='middle'>
               {
-                this.props.users.map((user) => {
-                  <List.Item onClick={this.props.login(user.id, user.name)}>
+                this.props.users.map((user) => (
+                  <List.Item key={user.id} onClick={() => this.handleUserClick(user.id, user.name)}>
                     <List.Content>
                       <List.Header>{user.name}</List.Header>
                     </List.Content>
                   </List.Item>
-                })
+                ))
               }
             </List>
           </Grid.Column>
