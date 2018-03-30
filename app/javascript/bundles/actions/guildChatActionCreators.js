@@ -1,7 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
-import { HELLO_WORLD_NAME_UPDATE } from '../constants/helloWorldConstants';
-
+export const HELLO_WORLD_NAME_UPDATE = 'HELLO_WORLD_NAME_UPDATE';
 export const updateName = (text) => ({
   type: HELLO_WORLD_NAME_UPDATE,
   text,
