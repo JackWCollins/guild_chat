@@ -5,7 +5,7 @@ import { loadConversations, selectConversation } from '../actions/guildChatActio
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.home.loadingConversations,
+    loading: state.home.loading,
     conversations: state.home.conversations,
     activeConversationId: state.home.activeConversationId,
     activeUserId: state.home.activeUserId

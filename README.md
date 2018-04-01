@@ -4,6 +4,7 @@ Welcome to the Guild Chat repo! This is a very simple messaging app for demo pur
 
 ## Code breakdown
 
+There are a few important models. Each `conversation` serves as a container for `messages` between two or more `users`. Currently the UI only supports two users per conversation, but the data model would support group conversations.
 
 ## Tech Stack
 
@@ -22,3 +23,5 @@ There are many things I didn't implement in the first pass through. Given more t
 * Use [JSON Web Tokens](https://github.com/jwt/ruby-jwt) for real user authorization.
 * Use an authService to store the user in `localStorage` so that a refresh won't "lose" the logged in user
 * Allow users to create group conversations. The data model already suppors this, as one `conversation` can have many `users` through `user_conversations`.
+* Properly verify requests instead of just using `skip_before_action :verify_authenticity_token`
+* Add a library like `MomentJS` to update the message times dynamically

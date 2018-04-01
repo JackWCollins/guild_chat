@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Form, TextArea, Feed, Icon, Button, Loader } from 'semantic-ui-react'
+import ConversationMessages from './ConversationMessages';
 
 class Conversation extends React.Component {
 
@@ -9,59 +10,33 @@ class Conversation extends React.Component {
   };
 
   handleMessageChange = (event) => {
+    console.log("Handle message change: ", event);
     this.setState({message: event.target.value});
   };
 
   handleMessageSubmit = () => {
-    this.props.sendMessage(this.props.activeUserId, this.props.conversationId, this.state.message)
-  };
-
-  recipientName = () => {
-    if (!this.props.message) {
-      ''
-    } else {
-      this.props.messages.find((message) => message.user_id !== this.props.activeUserId).first_name
-    }
+    this.props.sendMessage(this.props.activeUserId, this.props.conversation.id, this.state.message);
+    this.setState({message: ''})
+    console.log("End of handleMessageSubmit: ", this.state)
   };
 
   render() {
-    if (this.props.loading) {
-      return (
-        <Loader />
-      )
-    } else {
-      return (
-        <div>
-          <Feed>
-            <Feed.Event>
-              <Feed.Label >
-                <Icon name='user' />
-              </Feed.Label>
-              <Feed.Content>
-                <Feed.Summary>
-                  {this.recipientName()}
-                  <Feed.Date>recently</Feed.Date>
-                </Feed.Summary>
-                <Feed.Extra text>
-                  Hey, how's it going?
-                </Feed.Extra>
-              </Feed.Content>
-            </Feed.Event>
-          </Feed>
-          <Form>
-            <TextArea autoHeight placeholder={"Type a message to "+this.recipientName()+"..."} onChange={this.handleMessageChange} />
-            <Button default disabled={!this.state.message} onClick={this.handleMessageSubmit}>Submit</Button>
-          </Form>
-        </div>
-      )
-    }
+    return (
+      <div>
+        <ConversationMessages messages={this.props.conversation.messages} activeUserId={this.props.activeUserId} />
+        <Form>
+          <TextArea autoHeight placeholder={"Type a new message..."} onChange={this.handleMessageChange} />
+          <Button positive disabled={!this.state.message} onClick={this.handleMessageSubmit}>Submit</Button>
+        </Form>
+      </div>
+    )
   }
 };
 
 Conversation.propTypes = {
-  recipientName: PropTypes.string,
   sendMessage: PropTypes.func.isRequired,
-  conversationId: PropTypes.number
+  conversation: PropTypes.object,
+  activeUserId: PropTypes.number
 };
 
 export default Conversation;

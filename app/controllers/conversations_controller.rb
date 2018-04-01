@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
     if conversation.blank?
       render json: {error: "Please specify the conversation for the messages."}
     else
-      render json: conversation, include: 'messages'
+      render json: conversation, include: 'messages,users'
     end
   end
 end

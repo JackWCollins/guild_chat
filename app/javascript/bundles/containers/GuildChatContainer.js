@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import GuildChat from '../components/GuildChat';
-import { logout } from '../actions/guildChatActionCreators';
+import { logout, newMessageReceived } from '../actions/guildChatActionCreators';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ logout }, dispatch);
+  return bindActionCreators({ logout, newMessageReceived }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GuildChat);

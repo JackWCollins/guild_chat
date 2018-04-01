@@ -5,7 +5,7 @@ import { sendMessage } from '../actions/guildChatActionCreators';
 
 const mapStateToProps = (state) => {
   return {
-    conversationId: state.activeConversation.id,
+    conversation: state.home.conversations.find((c) => c.id === state.home.activeConversationId),
     activeUserId: state.home.activeUserId
   }
 };

@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
 .ui.segment {
   border: none;
   box-shadow: none;
@@ -21,4 +22,9 @@
 .login-form {
   height: 100%;
   margin-top: 100px;
+}
+
+.event.author .summary, .event.author .text.extra {
+  text-align: right;
+  max-width: none !important; /* force it for now */
 }
