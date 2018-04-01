@@ -17,14 +17,19 @@
   },
   "devDependencies": {
     "jest": "^22.4.3",
+    "jest-fetch-mock": "^1.5.0",
+    "redux-mock-store": "^1.5.1",
     "webpack-dev-server": "2.11.2"
   },
   "scripts": {
     "test": "jest"
   },
   "jest": {
+    "setupFiles": [
+      "<rootDir>/app/javascript/test/setupJest.js"
+    ],
     "roots": [
-      "app/javascript"
+      "<rootDir>/app/javascript/test"
     ]
   }
 }

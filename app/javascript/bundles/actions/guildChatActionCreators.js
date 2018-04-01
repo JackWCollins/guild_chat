@@ -53,7 +53,6 @@ const sendMessageSuccess = (message) => ({
 });
 
 export function sendMessage(userId, conversationId, messageBody) {
-  console.log("sendMessage action: ", userId, conversationId, messageBody)
   return function (dispatch) {
     dispatch(sendMessageRequest());
 

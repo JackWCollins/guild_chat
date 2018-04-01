@@ -25,7 +25,7 @@ When a new `message` is created we `broadcast` that event through ActionCable in
 ## Tech Stack
 
 * Rails 5.1 / Ruby 2.3.1
-* React 16.3 
+* React 16.3 built using Webpack and the `react_on_rails` gem
 * Redux 3.7.2
 * ActiveModelSerializers
 
