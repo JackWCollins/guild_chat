@@ -15,6 +15,7 @@ class Conversation extends React.Component {
 
   handleMessageSubmit = () => {
     this.props.sendMessage(this.props.activeUserId, this.props.conversation.id, this.state.message);
+    // In a production app I would make sure the request succeeded before clearing the message input
     this.setState({message: ''})
   };
 
