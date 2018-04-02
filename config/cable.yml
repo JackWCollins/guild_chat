@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://h:p70545954054b3f8ddc0b9ceef3ab8ab4aec09d4485e176ae4ee64ab9b47e57a2@ec2-35-174-134-181.compute-1.amazonaws.com:7689
   channel_prefix: guild_chat_production
