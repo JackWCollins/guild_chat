@@ -1,6 +1,6 @@
 # Guild Chat
 
-Welcome to the Guild Chat repo! This is a very simple messaging app for demo purposes only. 
+Welcome to the Guild Chat repo! This is a very simple messaging app for demo purposes only. I have hosted this on a Heroku hobby tier at https://guild-chat-app.herokuapp.com/. It might take a few seconds for the dyno to spin up on your first request. 
 
 ## Code breakdown
 
@@ -27,6 +27,7 @@ When a new `message` is created we `broadcast` that event through ActionCable in
 * Rails 5.1 / Ruby 2.3.1
 * React 16.3 built using Webpack and the `react_on_rails` gem
 * Redux 3.7.2
+* Redis
 * ActiveModelSerializers
 
 Testing:
@@ -39,6 +40,6 @@ There are many things I didn't implement in the first pass through. Given more t
 
 * Use [JSON Web Tokens](https://github.com/jwt/ruby-jwt) for real user authorization. 
 * Use an authService to store the JWT in `localStorage` so that the user will remain logged in if they refresh the page.
-* Allow users to create group conversations. The data model already suppors this, as one `conversation` can have many `users` through `user_conversations`.
+* Allow users to create group conversations. The data model already supports this, as one `conversation` can have many `users` through `user_conversations`.
 * Properly verify requests instead of just using `skip_before_action :verify_authenticity_token`
 * Add a library like `MomentJS` to update the message times dynamically on the React app.
