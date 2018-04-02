@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`actions login should return the userId and userName 1`] = `
+Object {
+  "type": "USER_LOGIN",
+  "userId": 123,
+  "userName": "Jack",
+}
+`;

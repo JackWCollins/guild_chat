@@ -12,13 +12,18 @@ class GuildChat extends React.Component {
     messageSubscription: null
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.listenForMessages();
   }
 
   listenForMessages() {
     // Create a Rails ActionCable connection to listen for messages created by other users
-    let cable = Cable.createConsumer('ws://'+window.location.host+'/cable');
+    let cable = '';
+    if (window.location.protocol === 'https:') {
+      cable = Cable.createConsumer('wss://'+window.location.host+'/cable');
+    } else {
+      cable = Cable.createConsumer('ws://'+window.location.host+'/cable');
+    }
     let messageSubscription = cable.subscriptions.create({
       channel: 'MessageChannel'
     }, {
@@ -31,11 +36,6 @@ class GuildChat extends React.Component {
   }
 
   handleLogoutClick = () => {
-    // Unsubscribe from the ActionCable subscription
-    if (this.state.messageSubscription && this.state.cable) {
-      this.state.cable.subscriptions.remove(this.state.messageSubscription)
-    }
-
     this.props.logout();
   }
 
