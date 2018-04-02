@@ -17,6 +17,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'react_on_rails'
 gem 'figaro'
 gem 'active_model_serializers'
+gem 'redis'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
